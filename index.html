@@ -275,9 +275,9 @@
 
       <div class="footer">
         <p class="cred">
-          feito por Professor
+          Modificado por THnew
           <a href="https://www.instagram.com/gus.dev" target="_blank"
-            >@gus.dev</a
+            >Direitros reservado ao @gus.dev</a
           >
         </p>
       </div>
@@ -326,6 +326,10 @@
 
         // Pegar a quantidade de cada item
         const lockpickQtd = document.getElementById("lockpick").value || 0;
+        const mochilaQtd = document.getElementById("mochila").value || 0;
+        const celularQtd = document.getElementById("celular").value || 0;
+        const radioQtd = document.getElementById("radio").value || 0;
+        const roupaQtd = document.getElementById("roupa").value || 0;
         const placaQtd = document.getElementById("placa").value || 0;
         const relogioQtd = document.getElementById("relogio").value || 0;
         const masterpickQtd = document.getElementById("masterpick").value || 0;
@@ -339,6 +343,10 @@
         // Calcular o total com base na escolha de preços (valor visível)
         let total = 0;
         total += lockpickQtd * precos[escolha].lockpick;
+        total += mochilaQtd * precos[escolha].mochila;
+        total += celularQtd * precos[escolha].celular;
+        total += radioQtd * precos[escolha].radio;
+        total += roupaQtd * precos[escolha].roupa;
         total += placaQtd * precos[escolha].placa;
         total += relogioQtd * precos[escolha].relogio;
         total += masterpickQtd * precos[escolha].masterpick;
@@ -352,6 +360,10 @@
         // Calcular o valor da parceria para o repasse e lucro
         let valorParceria = 0;
         valorParceria += lockpickQtd * precos["parceria"].lockpick;
+        valorParceria += mochilaQtd * precos["parceria"].mochila;
+        valorParceria += celularQtd * precos["parceria"].celular;
+        valorParceria += radioQtd * precos["parceria"].radio;
+        valorParceria += roupaQtd * precos["parceria"].roupa;
         valorParceria += placaQtd * precos["parceria"].placa;
         valorParceria += relogioQtd * precos["parceria"].relogio;
         valorParceria += masterpickQtd * precos["parceria"].masterpick;
@@ -363,8 +375,8 @@
         valorParceria += keycardQtd * precos["parceria"].keycard;
 
         // Calcular lucro (30%) e valor a repassar ao gerente (70%) com base na parceria
-        const lucro = valorParceria * 0.3;
-        const enviarGerente = valorParceria * 0.7;
+        const lucro = valorParceria * 0.25;
+        const enviarGerente = valorParceria * 0.75;
 
         // Atualizar os resultados na página
         document.getElementById(
@@ -387,6 +399,10 @@
       function resetar() {
         // Limpar os campos de quantidade
         document.getElementById("lockpick").value = "";
+        document.getElementById("mochila").value = "";
+        document.getElementById("celular").value = "";
+        document.getElementById("radio").value = "";
+        document.getElementById("roupa").value = "";
         document.getElementById("placa").value = "";
         document.getElementById("relogio").value = "";
         document.getElementById("masterpick").value = "";
