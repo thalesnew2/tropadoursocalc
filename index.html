@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>BahamasCalc</title>
+    <style>
+      /* Reset de margin e padding */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter Tight", sans-serif;
+        font-weight: 200;
+      }
+      a {
+        color: #b6b6b6;
+        text-decoration: none;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        background-color: #121212;
+      }
+
+      .calculator-card {
+        background-color: #1e1e1e;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        width: 350px;
+        text-align: center;
+        color: #fff;
+      }
+
+      .calculator-card h1 {
+        margin-bottom: 20px;
+        color: #fbfe5c;
+      }
+
+      .dropdown-empresas {
+        margin-bottom: 20px;
+      }
+
+      .dropdown-empresas select {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #2e2e2e;
+        color: #fff;
+        border: 1px solid #333;
+        width: 100%;
+      }
+
+      .mode-selector {
+        margin-bottom: 20px;
+      }
+
+      .mode-selector select {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #2e2e2e;
+        color: #fff;
+        border: 1px solid #333;
+        width: 100%;
+      }
+
+      .item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+
+      .item label {
+        margin-right: 10px;
+        font-size: 1rem;
+      }
+
+      .item input {
+        width: 70px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #333;
+        background-color: #2e2e2e;
+        color: #fff;
+      }
+      .button-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .reset-btn {
+        background-color: #1e1e1e;
+        color: #ffffff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 10px;
+        width: 50px;
+        font-size: 1.2rem;
+      }
+      button {
+        background-color: #555555;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      .result {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-around; /* Distribui os itens igualmente */
+        align-items: center; /* Centraliza verticalmente os itens */
+        gap: 10px; /* Espaçamento entre as caixas */
+      }
+
+      .result p {
+        padding: 10px; 
+        border: 1px solid #ffffff15; 
+        background-color: #ffffff00; 
+        border-radius: 5px; 
+        margin: 0;
+        min-width: 80px; 
+        text-align: center; 
+        font-size: 14px;
+        line-height: 25px;
+      }
+
+      .cred {
+        margin-top: 50px;
+        font-size: 0.7rem;
+        color: #6f6e6e;
+      }
+      img {
+        margin-top: 20px;
+        margin-bottom: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator-card">
+      <img src="logo-bahamas.png" alt="" />
+
+      <!-- Lista suspensa das parcerias -->
+      <div class="dropdown-empresas">
+        <label for="empresas-parceria"></label>
+        <select id="empresas-parceria">
+          <option value="Consultar">Consultar Parceria</option>
+          <option value="agiotas">Agiotas</option>
+          <option value="anonymous">Anonymous</option>
+          <option value="bevelirius">Beverly Hills</option>
+          <option value="croacia">Croacia</option>
+          <option value="diamond">Diamond</option>
+          <option value="Elite">Elite</option>
+          <option value="escocia">Escocia</option>
+          <option value="ghost">Ghosts</option>
+          <option value="grota">Grota</option>
+          <option value="laranjas">Laranjas</option>
+          <option value="lacoste">Lacoste</option>
+          <option value="mecfluxo">Mecânica Fluxo</option>
+          <option value="mecnoway">Mecânica Noway</option>
+          <option value="mecredline">Mecânica Redline</option>
+          <option value="penha">Penha</option>
+          <option value="suica">Suíça</option>
+          <option value="taliba">Talibã</option>
+          <option value="topsecret">Top Secret</option>
+          <option value="turquia">Turquia</option>
+          <option value="vidarasa">Vida Rasa</option>
+        </select>
+      </div>
+
+      <!-- Escolha entre parceria ou valor padrão para todos os itens -->
+      <div class="mode-selector">
+        <label for="preco-geral"></label>
+        <select id="preco-geral">
+          <option value="padrao">Preço Padrão</option>
+          <option value="parceria">Preço Parceria</option>
+        </select>
+      </div>
+
+      <!-- Itens para cálculo -->
+      <div class="item">
+        <label for="lockpick">🔑 Lockpick → 30k | 40k </label>
+        <input type="number" id="lockpick" max="999" placeholder="Qtd" />
+      </div>
+
+      <div class="item">
+        <label for="masterpick">🗝️ Masterpick → 70k | 80k</label>
+        <input type="number" id="masterpick" max="999" placeholder="Qtd" />
+      </div>
+
+      <div class="item">
+        <label for="placa">🎰 Placa → 30k | 40k</label>
+        <input type="number" id="placa" max="999" placeholder="Qtd" />
+      </div>
+
+      <div class="item">
+        <label for="relogio">🧨 Explosivo C4 → 10k | 25k</label>
+        <input type="number" id="relogio" max="999" placeholder="Qtd" />
+      </div>
+
+      <div class="item">
+        <label for="algemas">🔗 Algemas → 40k | 50k</label>
+        <input type="number" id="algemas" max="999" placeholder="Qtd" />
+      </div>
+
+      <div class="item">
+        <label for="corda">➰ Corda → 20k | 30k</label>
+        <input type="number" id="corda" max="999" placeholder="Qtd" />
+      </div>
+
+      <div class="item">
+        <label for="mascara">👤 Máscara → 10k | 12k</label>
+        <input type="number" id="mascara" max="999" placeholder="Qtd" />
+      </div>
+
+      <div class="item">
+        <label for="rastreador">🛰️ Rastreador → 90k | 100k</label>
+        <input type="number" id="rastreador" max="999" placeholder="Qtd" />
+      </div>
+
+      <div class="item">
+        <label for="capuz">⚫️ Capuz → 20k | 30k</label>
+        <input type="number" id="capuz" max="999" placeholder="Qtd" />
+      </div>
+
+      <div class="item">
+        <label for="keycard">💳 KeyCard → 40k | 50k</label>
+        <input type="number" id="keycard" max="999" placeholder="Qtd" />
+      </div>
+
+      <div class="button-container">
+        <button onclick="calcular()">Calcular</button>
+        <button onclick="resetar()" class="reset-btn">↺</button>
+      </div>
+      <div class="result">
+        <p id="valorTotal">Total</p>
+        <p id="lucro">Lucro</p>
+        <p id="gerente">Repassar</p>
+      </div>
+
+      <div class="footer">
+        <p class="cred">
+          feito por Professor
+          <a href="https://www.instagram.com/gus.dev" target="_blank"
+            >@gus.dev</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <script>
+      function calcular() {
+        // Preços de parceria e padrão para cada item
+        const precos = {
+          parceria: {
+            lockpick: 30000,
+            placa: 30000,
+            relogio: 10000,
+            masterpick: 70000,
+            algemas: 40000,
+            corda: 20000,
+            mascara: 10000,
+            rastreador: 90000,
+            capuz: 20000,
+            keycard: 40000,
+          },
+          padrao: {
+            lockpick: 40000,
+            placa: 40000,
+            relogio: 25000,
+            masterpick: 80000,
+            algemas: 50000,
+            corda: 30000,
+            mascara: 12000,
+            rastreador: 100000,
+            capuz: 30000,
+            keycard: 50000,
+          },
+        };
+
+        // Pegar a escolha do usuário: parceria ou padrão
+        const escolha = document.getElementById("preco-geral").value;
+
+        // Pegar a quantidade de cada item
+        const lockpickQtd = document.getElementById("lockpick").value || 0;
+        const placaQtd = document.getElementById("placa").value || 0;
+        const relogioQtd = document.getElementById("relogio").value || 0;
+        const masterpickQtd = document.getElementById("masterpick").value || 0;
+        const algemasQtd = document.getElementById("algemas").value || 0;
+        const cordaQtd = document.getElementById("corda").value || 0;
+        const mascaraQtd = document.getElementById("mascara").value || 0;
+        const rastreadorQtd = document.getElementById("rastreador").value || 0;
+        const capuzQtd = document.getElementById("capuz").value || 0;
+        const keycardQtd = document.getElementById("keycard").value || 0;
+
+        // Calcular o total com base na escolha de preços (valor visível)
+        let total = 0;
+        total += lockpickQtd * precos[escolha].lockpick;
+        total += placaQtd * precos[escolha].placa;
+        total += relogioQtd * precos[escolha].relogio;
+        total += masterpickQtd * precos[escolha].masterpick;
+        total += algemasQtd * precos[escolha].algemas;
+        total += cordaQtd * precos[escolha].corda;
+        total += mascaraQtd * precos[escolha].mascara;
+        total += rastreadorQtd * precos[escolha].rastreador;
+        total += capuzQtd * precos[escolha].capuz;
+        total += keycardQtd * precos[escolha].keycard;
+
+        // Calcular o valor da parceria para o repasse e lucro
+        let valorParceria = 0;
+        valorParceria += lockpickQtd * precos["parceria"].lockpick;
+        valorParceria += placaQtd * precos["parceria"].placa;
+        valorParceria += relogioQtd * precos["parceria"].relogio;
+        valorParceria += masterpickQtd * precos["parceria"].masterpick;
+        valorParceria += algemasQtd * precos["parceria"].algemas;
+        valorParceria += cordaQtd * precos["parceria"].corda;
+        valorParceria += mascaraQtd * precos["parceria"].mascara;
+        valorParceria += rastreadorQtd * precos["parceria"].rastreador;
+        valorParceria += capuzQtd * precos["parceria"].capuz;
+        valorParceria += keycardQtd * precos["parceria"].keycard;
+
+        // Calcular lucro (30%) e valor a repassar ao gerente (70%) com base na parceria
+        const lucro = valorParceria * 0.3;
+        const enviarGerente = valorParceria * 0.7;
+
+        // Atualizar os resultados na página
+        document.getElementById(
+          "valorTotal"
+        ).innerText = `Total ${total.toLocaleString("pt-BR", {
+          minimumFractionDigits: 2,
+        })}`;
+        document.getElementById(
+          "lucro"
+        ).innerText = `Lucro ${lucro.toLocaleString("pt-BR", {
+          minimumFractionDigits: 2,
+        })}`;
+        document.getElementById(
+          "gerente"
+        ).innerText = `Repassar ${enviarGerente.toLocaleString("pt-BR", {
+          minimumFractionDigits: 2,
+        })}`;
+      }
+
+      function resetar() {
+        // Limpar os campos de quantidade
+        document.getElementById("lockpick").value = "";
+        document.getElementById("placa").value = "";
+        document.getElementById("relogio").value = "";
+        document.getElementById("masterpick").value = "";
+        document.getElementById("algemas").value = "";
+        document.getElementById("corda").value = "";
+        document.getElementById("mascara").value = "";
+        document.getElementById("rastreador").value = "";
+        document.getElementById("capuz").value = "";
+        document.getElementById("keycard").value = "";
+
+        // Limpar os resultados na tela
+        document.getElementById("valorTotal").innerText = "Total 0,00";
+        document.getElementById("lucro").innerText = "Lucro 0,00";
+        document.getElementById("gerente").innerText = "Repassar 0,00";
+      }
+    </script>
+  </body>
+</html>
